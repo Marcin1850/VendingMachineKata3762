@@ -1,0 +1,8 @@
+# Eclipse files
+.project
+.classpath
+.settings
+
+# build directories
+target
+build
