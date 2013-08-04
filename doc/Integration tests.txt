@@ -1,0 +1,30 @@
+﻿1) Dodać 3 produkty (1, 2, 4 sztuki)
+	=> assert (mamy 3 półki), assert (zawartość każdej z półek)
+2) Wybieramy numer każdej z półek
+	=> assert (cena się zgadza)
+3) Wybieramy półkę, wrzucamy monetę tak żeby było za mało
+	=> assert (cena - moneta1)
+4) Wrzucamy kolejną monetę tak żeby było za mało
+	=> assert (wyświetlacz = cena - moneta1 - moneta2)
+5) Wrzucamy kolejną monetę tak żeby suma się zgadzała
+	=> assert (wyświetlacz = 0), assert (otrzymujemy produkt), assert (brak reszty)
+6) Powtarzamy (3) i (4), wrzucamy monetę tak żeby było za dużo (maszyna ma monety żeby wydać resztę)
+	=> assert (wyświetlacz = 0), assert (otrzymujemy produkt), assert (reszta = cena - moneta1 - moneta2 - moneta3)
+7) Wybieramy półkę, wrzucamy monetę tak żeby od razu było tyle co trzeba
+	=> assert (wyświetlacz = 0), assert (otrzymujemy produkt), assert (brak reszty)
+8) Powtarzamy (3), naciskamy 'Anuluj'
+	=> assert (reszta = moneta1)
+9) Powtarzamy (3) i (4), naciskamy 'Anuluj'
+	=> assert (reszta = moneta1, moneta2)
+10) Nie wybieramy półki, naciskamy 'Anuluj'
+	=> assert (wyświetlacz = 0), assert (brak reszty)
+11) Wybieramy półkę, naciskamy 'Anuluj'
+	=> assert (wyświetlacz = 0), assert (brak reszty)
+12) Powtarzamy (3) i (4), wrzucamy monetę tak żeby było za dużo (maszyna nie ma monet żeby wydać resztę)
+	=> assert (wyświetlacz = 0), assert (nie otrzymujemy produktu), assert (reszta = moneta1, moneta2, moneta3), assert (pojawia się komunikat)
+
+
+
+TODO
+----
+- walidacje w formularzach
