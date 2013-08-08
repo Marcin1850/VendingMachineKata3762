@@ -8,16 +8,26 @@
 <title>Vending Machine</title>
 </head>
 <body>
+    <a href="/VendingMachineKata">Main page</a>
+    <hr/>
+
     <h1>Vending Machine</h1>
     <form action="machine">
-        <label for="name">Please enter your name</label><br/>
-        <input type="text" name="name"/>
-        <input type="submit" value="Send"/>
+        <p>
+        <label for="shelves[0].productName">Shelf 1:</label>
+        <input type="text"
+            name="shelves[0].productName"
+            <s:if test="shelves[0] != null">value=<s:property value="shelves[0].productName"/></s:if> />
+        <input type="text"
+            name="shelves[0].quantity"
+            <s:if test="shelves[0] != null">value=<s:property value="shelves[0].quantity"/></s:if> />
+        </p>
+        <p>
+        <input type="submit" value="Actualize"/>
+        </p>
     </form>
 
-    <s:if test="name != null">
-        <hr>
-        <p>Hello, <s:property value="name"/></p>
-    </s:if>
+    <label for="otherValue">Other value:</label>
+    <input type="text" name="otherValue" value=<s:property value="otherValue"/> />
 </body>
 </html>
