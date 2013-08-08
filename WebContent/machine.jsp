@@ -17,10 +17,10 @@
         <label for="shelves[0].productName">Shelf 1:</label>
         <input type="text"
             name="shelves[0].productName"
-            <s:if test="shelves[0] != null">value=<s:property value="shelves[0].productName"/></s:if> />
+            <s:if test="shelves[0] != null">value="<s:property value="shelves[0].productName"/>"</s:if> />
         <input type="text"
             name="shelves[0].quantity"
-            <s:if test="shelves[0] != null">value=<s:property value="shelves[0].quantity"/></s:if> />
+            <s:if test="shelves[0] != null">value="<s:property value="shelves[0].quantity"/>"</s:if> />
         </p>
         <p>
         <input type="submit" value="Actualize"/>
@@ -28,6 +28,6 @@
     </form>
 
     <label for="otherValue">Other value:</label>
-    <input type="text" name="otherValue" value=<s:property value="otherValue"/> />
+    <input type="text" name="otherValue" value="<s:property value="otherValue"/>" />
 </body>
 </html>

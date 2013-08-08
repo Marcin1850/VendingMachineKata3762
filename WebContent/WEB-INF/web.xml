@@ -11,6 +11,12 @@
         <welcome-file>machine.jsp</welcome-file>
     </welcome-file-list>
 
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>
