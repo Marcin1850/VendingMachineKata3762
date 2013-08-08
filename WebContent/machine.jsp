@@ -6,7 +6,12 @@
 <html>
 <head>
 <title>Vending Machine</title>
+
+<style>
+.errorMessage {color:red;}
+</style>
 </head>
+
 <body>
     <a href="/VendingMachineKata">Main page</a>
     <hr/>
