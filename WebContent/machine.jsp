@@ -12,20 +12,22 @@
     <hr/>
 
     <h1>Vending Machine</h1>
-    <form action="machine">
+    <s:form action="machine" method="post">
         <p>
-        <label for="shelves[0].productName">Shelf 1:</label>
-        <input type="text"
+        <s:textfield
+            label="Shelf 1"
             name="shelves[0].productName"
-            <s:if test="shelves[0] != null">value="<s:property value="shelves[0].productName"/>"</s:if> />
-        <input type="text"
+            size="20" />
+        <s:textfield
             name="shelves[0].quantity"
-            <s:if test="shelves[0] != null">value="<s:property value="shelves[0].quantity"/>"</s:if> />
+            size="5" />
         </p>
         <p>
-        <input type="submit" value="Actualize"/>
+        <s:submit name="Actualize"/>
         </p>
-    </form>
+    </s:form>
+
+    <hr/>
 
     <label for="otherValue">Other value:</label>
     <input type="text" name="otherValue" value="<s:property value="otherValue"/>" />
