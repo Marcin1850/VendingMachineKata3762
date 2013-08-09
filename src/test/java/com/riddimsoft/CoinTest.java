@@ -25,7 +25,7 @@ public class CoinTest {
         try {
             coin = new Coin(value);
 
-            assertEquals(value, coin.getValue(), TestConstants.FLOAT_COMPARISON_DELTA);
+            assertEquals(value, coin.getValue(), Constants.FLOAT_COMPARISON_DELTA);
         } catch (final NonExistentCoinException e) {
             fail("NonExistentCoinException thrown");
         }

@@ -19,7 +19,7 @@ public class PriceTest {
             price = new Price(Coin.getMinimalDenomination());
 
             assertEquals(Coin.getMinimalDenomination(), price.getValue(),
-                    TestConstants.FLOAT_COMPARISON_DELTA);
+                    Constants.FLOAT_COMPARISON_DELTA);
         } catch (final BadPriceException e) {
             fail("BadPriceException thrown");
         }
@@ -33,7 +33,7 @@ public class PriceTest {
         try {
             price = new Price(value);
 
-            assertEquals(value, price.getValue(), TestConstants.FLOAT_COMPARISON_DELTA);
+            assertEquals(value, price.getValue(), Constants.FLOAT_COMPARISON_DELTA);
         } catch (final BadPriceException e) {
             fail("BadPriceException thrown");
         }
