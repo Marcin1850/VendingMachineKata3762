@@ -11,6 +11,14 @@ public class Storage {
         return coins;
     }
 
+    public final int getCoinsNumber(final Coin coin) {
+        if (coins.containsKey(coin)) {
+            return coins.get(coin);
+        } else {
+            return 0;
+        }
+    }
+
     public final void addCoins(final Coin coin, final int number) throws StorageException {
         if (number == 0) {
             return;
