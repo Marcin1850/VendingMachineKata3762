@@ -13,6 +13,9 @@
 
 <style>
 .errorMessage {color:red;}
+.blueBg {background-color:blue;}
+.darkKhakiBg {background-color:darkKhaki;}
+.greenYellowBg {background-color:greenYellow;}
 </style>
 </head>
 

@@ -6,15 +6,26 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 
 <s:div id="adminMachineDiv">
-    <p>Current state:</p>
-    <p>Shelf 1: <s:property value="shelves[0].quantity" default="0" /></p>
+    <p>Current products:</p>
+    <table border="1" class="greenYellowBg">
+        <tr>
+            <td>Shelf number</td>
+            <td>Product name</td>
+            <td>Quantity</td>
+        </tr>
+        <tr>
+            <td><s:property value="shelves[0].number" /></td>
+            <td><s:property value="shelves[0].productType.name" /></td>
+            <td><s:property value="shelves[0].quantity" default="0" /></td>
+        </tr>
+    </table>
     <hr/>
 
     <p>
         <s:form action="adminMachine" method="post">
             <s:textfield
                 label="Shelf 1"
-                name="shelves[0].productName"
+                name="shelves[0].productType.name"
                 size="20" />
             <s:textfield
                 name="shelves[0].quantity"
