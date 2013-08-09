@@ -19,19 +19,19 @@ public class Storage {
         }
     }
 
-    public final void addCoins(final Coin coin, final int number) throws StorageException {
-        if (number == 0) {
-            return;
-        }
-
+    public final void setCoins(final Coin coin, final int number) throws StorageException {
         if (number < 0) {
             throw new StorageException("Coin number cannot be negative");
         }
 
+        coins.put(coin, number);
+    }
+
+    public final void addCoin(final Coin coin) throws StorageException {
         if (coins.containsKey(coin)) {
-            coins.put(coin, coins.get(coin) + number);
+            coins.put(coin, coins.get(coin) + 1);
         } else {
-            coins.put(coin, number);
+            coins.put(coin, 1);
         }
     }
 }

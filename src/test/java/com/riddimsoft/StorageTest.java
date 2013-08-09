@@ -12,13 +12,13 @@ public class StorageTest {
     private static final int NUMBER_OF_COINS_TO_ADD = 5;
 
     @Test(expected = StorageException.class)
-    public final void testAddNagativeNumberOfCoins()
+    public final void testSetNagativeNumberOfCoins()
             throws StorageException, NonExistentCoinException {
-        (new Storage()).addCoins(new Coin(Coin.getMinimalDenomination()), -1);
+        (new Storage()).setCoins(new Coin(Coin.getMinimalDenomination()), -1);
     }
 
     @Test
-    public final void testAddCoinsAndCheckResult()
+    public final void testSetAndAddCoinsAndCheckResult()
             throws StorageException, NonExistentCoinException {
         final Storage storage = new Storage();
 
@@ -26,9 +26,9 @@ public class StorageTest {
         final Coin secondCoinToAdd = new Coin(Coin.getPossibleValues().higher(firstCoinToAdd.
                 getValue()));
 
-        storage.addCoins(firstCoinToAdd, NUMBER_OF_COINS_TO_ADD);
-        storage.addCoins(firstCoinToAdd, 1);
-        storage.addCoins(secondCoinToAdd, NUMBER_OF_COINS_TO_ADD);
+        storage.setCoins(firstCoinToAdd, NUMBER_OF_COINS_TO_ADD);
+        storage.addCoin(firstCoinToAdd);
+        storage.setCoins(secondCoinToAdd, NUMBER_OF_COINS_TO_ADD);
 
         assertEquals((long) storage.getCoins().size(), 2);
         assertEquals((long) storage.getCoinsNumber(firstCoinToAdd), NUMBER_OF_COINS_TO_ADD + 1);
@@ -42,21 +42,21 @@ public class StorageTest {
 
         final Coin coinToAdd = new Coin(Coin.getMinimalDenomination());
 
-        storage.addCoins(coinToAdd, 0);
+        storage.setCoins(coinToAdd, 0);
 
         assertEquals((long) storage.getCoinsNumber(coinToAdd), 0);
     }
 
     @Test
-    public final void testAddNumberAndZeroCoinsAndCheckResult()
+    public final void testSetNumberAndZeroCoinsAndCheckResult()
             throws StorageException, NonExistentCoinException {
         final Storage storage = new Storage();
 
         final Coin coinToAdd = new Coin(Coin.getMinimalDenomination());
 
-        storage.addCoins(coinToAdd, NUMBER_OF_COINS_TO_ADD);
-        storage.addCoins(coinToAdd, 0);
+        storage.setCoins(coinToAdd, NUMBER_OF_COINS_TO_ADD);
+        storage.setCoins(coinToAdd, 0);
 
-        assertEquals((long) storage.getCoinsNumber(coinToAdd), NUMBER_OF_COINS_TO_ADD);
+        assertEquals((long) storage.getCoinsNumber(coinToAdd), 0);
     }
 }
