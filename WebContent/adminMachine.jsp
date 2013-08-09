@@ -6,18 +6,20 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 
 <s:div id="adminMachineDiv">
-    <s:form action="adminMachine" method="post">
-        <p>
-        <s:textfield
-            label="Shelf 1"
-            name="shelves[0].productName"
-            size="20" />
-        <s:textfield
-            name="shelves[0].quantity"
-            size="5" />
-        </p>
-        <p>
-        <sx:submit targets="adminMachineDiv" value="Actualize shelves" showLoadingText="true" />
-        </p>
-    </s:form>
+    <p>Current state:</p>
+    <p>Shelf 1: <s:property value="shelves[0].quantity" default="0" /></p>
+    <hr/>
+
+    <p>
+        <s:form action="adminMachine" method="post">
+            <s:textfield
+                label="Shelf 1"
+                name="shelves[0].productName"
+                size="20" />
+            <s:textfield
+                name="shelves[0].quantity"
+                size="5" />
+            <sx:submit targets="adminMachineDiv" value="Actualize shelves" showLoadingText="true" />
+        </s:form>
+    </p>
 </s:div>
