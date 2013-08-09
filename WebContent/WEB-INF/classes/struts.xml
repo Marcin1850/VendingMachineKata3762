@@ -7,9 +7,9 @@
     <constant name="struts.devMode" value="true" />
 
     <package name="machine" extends="struts-default">
-        <action name="machine" class="com.riddimsoft.VendingMachineAction" method="execute">
-            <result name="success">/machine.jsp</result>
-            <result name="input">/machine.jsp</result>
+        <action name="adminMachine" class="com.riddimsoft.VendingMachineAction" method="execute">
+            <result name="success">/adminMachine.jsp</result>
+            <result name="input">/adminMachine.jsp</result>
         </action>
     </package>
 </struts>
