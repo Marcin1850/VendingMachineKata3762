@@ -8,7 +8,6 @@ import com.riddimsoft.exceptions.NonExistentCoinException;
 import com.riddimsoft.exceptions.StorageException;
 
 public class StorageTest {
-
     private static final int NUMBER_OF_COINS_TO_ADD = 5;
 
     @Test(expected = StorageException.class)

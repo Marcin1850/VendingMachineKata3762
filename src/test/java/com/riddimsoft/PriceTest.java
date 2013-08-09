@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.riddimsoft.exceptions.BadPriceException;
 
 public class PriceTest {
-    private static final double FLOAT_COMPARISON_DELTA = 0.001;
     private static final int GREATER_VALUE_MULTIPLIER = 25;
     private static final double BAD_VALUE_MULTIPLIER = 0.5;
 
@@ -19,7 +18,8 @@ public class PriceTest {
         try {
             price = new Price(Coin.getMinimalDenomination());
 
-            assertEquals(Coin.getMinimalDenomination(), price.getValue(), FLOAT_COMPARISON_DELTA);
+            assertEquals(Coin.getMinimalDenomination(), price.getValue(),
+                    TestConstants.FLOAT_COMPARISON_DELTA);
         } catch (final BadPriceException e) {
             fail("BadPriceException thrown");
         }
@@ -33,7 +33,7 @@ public class PriceTest {
         try {
             price = new Price(value);
 
-            assertEquals(value, price.getValue(), FLOAT_COMPARISON_DELTA);
+            assertEquals(value, price.getValue(), TestConstants.FLOAT_COMPARISON_DELTA);
         } catch (final BadPriceException e) {
             fail("BadPriceException thrown");
         }

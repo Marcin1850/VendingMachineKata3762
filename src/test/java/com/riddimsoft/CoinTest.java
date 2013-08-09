@@ -15,9 +15,7 @@ import com.riddimsoft.exceptions.NonExistentCoinException;
 public class CoinTest {
     private static final int EXISTENT_COIN_VALUE = 2;
     private static final float NON_EXISTENT_COIN_VALUE = 0.51f;
-    private static final double FLOAT_COMPARISON_DELTA = 0.001;
     private static final int NUMBER_OF_FIRST_DENOMINATORS = 3;
-
 
     @Test
     public void testCoinCreate() {
@@ -27,7 +25,7 @@ public class CoinTest {
         try {
             coin = new Coin(value);
 
-            assertEquals(value, coin.getValue(), FLOAT_COMPARISON_DELTA);
+            assertEquals(value, coin.getValue(), TestConstants.FLOAT_COMPARISON_DELTA);
         } catch (final NonExistentCoinException e) {
             fail("NonExistentCoinException thrown");
         }

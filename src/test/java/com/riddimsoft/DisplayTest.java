@@ -7,8 +7,6 @@ import org.junit.Test;
 import com.riddimsoft.exceptions.DisplayException;
 
 public class DisplayTest {
-    private static final double FLOAT_COMPARISON_DELTA = 0.001;
-
     @Test
     public final void testResetValue() throws DisplayException {
         final Display display = new Display();
@@ -16,7 +14,7 @@ public class DisplayTest {
         display.addValue((float) Math.PI);
         display.resetValue();
 
-        assertEquals(display.getValue(), 0f, FLOAT_COMPARISON_DELTA);
+        assertEquals(display.getValue(), 0, TestConstants.FLOAT_COMPARISON_DELTA);
     }
 
     @Test
@@ -26,7 +24,7 @@ public class DisplayTest {
         display.addValue((float) Math.PI);
         display.addValue((float) Math.PI);
 
-        assertEquals(display.getValue(), 2 * Math.PI, FLOAT_COMPARISON_DELTA);
+        assertEquals(display.getValue(), 2 * Math.PI, TestConstants.FLOAT_COMPARISON_DELTA);
     }
 
     @Test(expected = DisplayException.class)
