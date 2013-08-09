@@ -8,7 +8,9 @@ public final class Price {
     private final float value;
 
     public Price(final float value) throws BadPriceException {
-        if ((value / Coin.getMinimalDenomination()) > MAX_ALLOWED_FLOAT_DIFFERENCE) {
+        // TODO - zalozenie ze kolejne nominaly sa mnoznikami jest niesluszne
+        if (Math.abs((value / Coin.getMinimalDenomination()) - Math.round(value / Coin.getMinimalDenomination()))
+                > MAX_ALLOWED_FLOAT_DIFFERENCE) {
             throw new BadPriceException();
         }
 
