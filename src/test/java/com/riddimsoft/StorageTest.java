@@ -12,13 +12,14 @@ public class StorageTest {
     private static final int NUMBER_OF_COINS_TO_ADD = 5;
 
     @Test(expected = StorageException.class)
-    public void testAddNagativeNumberOfCoins() throws StorageException, NonExistentCoinException {
-        Storage.getInstance().addCoins(new Coin(Coin.getMinimalDenomination()), -1);
+    public final void testAddNagativeNumberOfCoins()
+            throws StorageException, NonExistentCoinException {
+        (new Storage()).addCoins(new Coin(Coin.getMinimalDenomination()), -1);
     }
 
     @Test
-    public void testAddCoins() throws StorageException, NonExistentCoinException {
-        final Storage storage = Storage.getInstance();
+    public final void testAddCoins() throws StorageException, NonExistentCoinException {
+        final Storage storage = new Storage();
 
         final Coin coinToAdd = new Coin(Coin.getMinimalDenomination());
 
@@ -29,8 +30,8 @@ public class StorageTest {
     }
 
     @Test
-    public void testAddZeroCoins() throws StorageException, NonExistentCoinException {
-        final Storage storage = Storage.getInstance();
+    public final void testAddZeroCoins() throws StorageException, NonExistentCoinException {
+        final Storage storage = new Storage();
 
         final Coin coinToAdd = new Coin(Coin.getMinimalDenomination());
 

@@ -4,23 +4,14 @@ import java.util.HashMap;
 
 import com.riddimsoft.exceptions.StorageException;
 
-public final class Storage {
-    private static final Storage INSTANCE = new Storage();
-
+public class Storage {
     private final HashMap<Coin, Integer> coins = new HashMap<Coin, Integer>();
 
-    private Storage() {
-    }
-
-    public static Storage getInstance() {
-        return INSTANCE;
-    }
-
-    public HashMap<Coin, Integer> getCoins() {
+    public final HashMap<Coin, Integer> getCoins() {
         return coins;
     }
 
-    public void addCoins(final Coin coin, final int number) throws StorageException {
+    public final void addCoins(final Coin coin, final int number) throws StorageException {
         if (number == 0) {
             return;
         }
