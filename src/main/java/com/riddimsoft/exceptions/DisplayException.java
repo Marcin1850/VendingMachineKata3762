@@ -1,7 +1,7 @@
 package com.riddimsoft.exceptions;
 
-public class StorageException extends Exception {
-    public StorageException(final String message) {
+public class DisplayException extends Exception {
+    public DisplayException(final String message) {
         super(message);
     }
 
