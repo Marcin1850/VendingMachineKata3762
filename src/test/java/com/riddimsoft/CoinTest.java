@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.riddimsoft.exceptions.NonExistentCoinException;
 
-public class TestCoin {
+public class CoinTest {
     private static final int EXISTENT_COIN_VALUE = 2;
     private static final float NON_EXISTENT_COIN_VALUE = 0.51f;
     private static final double FLOAT_COMPARISON_DELTA = 0.001;
@@ -27,7 +27,7 @@ public class TestCoin {
         }
     }
 
-    @Test(expected=NonExistentCoinException.class)
+    @Test(expected = NonExistentCoinException.class)
     public void testCoinCreateNonExistent() throws NonExistentCoinException {
         new Coin(NON_EXISTENT_COIN_VALUE);
     }
