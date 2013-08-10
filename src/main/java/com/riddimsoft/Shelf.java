@@ -4,6 +4,11 @@ public class Shelf {
     private int number;
     private Product product;
 
+    public Shelf(final int number, final Product product) {
+        this.number = number;
+        this.product = product;
+    }
+
     public final int getNumber() {
         return number;
     }

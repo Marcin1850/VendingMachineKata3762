@@ -1,13 +1,13 @@
 package com.riddimsoft;
 
-public class ProductType {
-    private String name;
+public final class ProductType {
+    private final String name;
 
-    public final String getName() {
-        return name;
+    public ProductType(final String name) {
+        this.name = name;
     }
 
-    public final void setName(final String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 }
