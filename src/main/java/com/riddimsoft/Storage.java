@@ -59,7 +59,7 @@ public class Storage {
         }
     }
 
-    public final int getProductsNumber(final Product product) throws StorageException {
+    public final int getProductsQuantity(final Product product) throws StorageException {
         assertProductNotNull(product);
 
         if (products.containsKey(product)) {
@@ -82,5 +82,7 @@ public class Storage {
         } else {
             products.put(product, quantity);
         }
+
+     // TODO - zaktualizowac pricelist
     }
 }
