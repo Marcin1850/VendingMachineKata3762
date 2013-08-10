@@ -14,7 +14,7 @@ public class DisplayTest {
         display.addValue((float) Math.PI);
         display.resetValue();
 
-        assertEquals(display.getValue(), 0, Constants.FLOAT_COMPARISON_DELTA);
+        assertEquals("0,00", display.getValue());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class DisplayTest {
         display.addValue((float) Math.PI);
         display.addValue((float) Math.PI);
 
-        assertEquals(display.getValue(), 2 * Math.PI, Constants.FLOAT_COMPARISON_DELTA);
+        assertEquals(String.format("%.2f", 2 * Math.PI), display.getValue());
     }
 
     @Test(expected = DisplayException.class)

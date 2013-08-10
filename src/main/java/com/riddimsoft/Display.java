@@ -5,8 +5,8 @@ import com.riddimsoft.exceptions.DisplayException;
 public class Display {
     private float value = 0;
 
-    public final float getValue() {
-        return value;
+    public final String getValue() {
+        return String.format("%.2f", value);
     }
 
     public final void resetValue() {
