@@ -12,14 +12,14 @@ public class Storage {
         return coins;
     }
 
-    private void checkForNullCoin(final Coin coin) throws StorageException {
+    private void assertCoinNotNull(final Coin coin) throws StorageException {
         if (coin == null) {
             throw new StorageException("Coin can't be empty");
         }
     }
 
     public final int getCoinsNumber(final Coin coin) throws StorageException {
-        checkForNullCoin(coin);
+        assertCoinNotNull(coin);
 
         if (coins.containsKey(coin)) {
             return coins.get(coin);
@@ -30,7 +30,7 @@ public class Storage {
 
     public final void setParticularCoin(final Coin coin, final int quantity)
             throws StorageException {
-        checkForNullCoin(coin);
+        assertCoinNotNull(coin);
 
         if (quantity < 0) {
             throw new StorageException("Coin quantity cannot be negative");
@@ -40,7 +40,7 @@ public class Storage {
     }
 
     public final void addCoin(final Coin coin) throws StorageException {
-        checkForNullCoin(coin);
+        assertCoinNotNull(coin);
 
         if (coins.containsKey(coin)) {
             coins.put(coin, coins.get(coin) + 1);
@@ -53,14 +53,14 @@ public class Storage {
         return products;
     }
 
-    private void checkForNullProduct(final Product product) throws StorageException {
+    private void assertProductNotNull(final Product product) throws StorageException {
         if (product == null) {
             throw new StorageException("Product can't be empty");
         }
     }
 
     public final int getProductsNumber(final Product product) throws StorageException {
-        checkForNullProduct(product);
+        assertProductNotNull(product);
 
         if (products.containsKey(product)) {
             return products.get(product);
@@ -71,7 +71,7 @@ public class Storage {
 
     public final void setParticularProduct(final Product product, final int quantity)
             throws StorageException {
-        checkForNullProduct(product);
+        assertProductNotNull(product);
 
         if (quantity < 0) {
             throw new StorageException("Product quantity cannot be negative");

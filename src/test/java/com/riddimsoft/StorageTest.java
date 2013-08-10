@@ -6,13 +6,12 @@ import org.junit.Test;
 
 import com.riddimsoft.exceptions.BadPriceException;
 import com.riddimsoft.exceptions.NonExistentCoinException;
+import com.riddimsoft.exceptions.ProductException;
+import com.riddimsoft.exceptions.ProductTypeException;
 import com.riddimsoft.exceptions.StorageException;
 
 public class StorageTest {
     private static final int NUMBER_OF_ITEMS_TO_ADD = 5;
-    private static final String PRODUCT_TYPE_1 = "Product example";
-    private static final String PRODUCT_TYPE_2 = "Second product example";
-    private static final float PRICE = 2.5f;
 
     @Test(expected = StorageException.class)
     public final void testSetNullCoin()
@@ -90,20 +89,21 @@ public class StorageTest {
 
     @Test(expected = StorageException.class)
     public final void testSetNagativeNumberOfProduct()
-            throws StorageException, BadPriceException {
-        (new Storage()).setParticularProduct(new Product(new ProductType(PRODUCT_TYPE_1),
-                new Price(PRICE)), -1);
+            throws StorageException, BadPriceException, ProductTypeException, ProductException {
+        (new Storage()).setParticularProduct(new Product(
+                new ProductType(TestConstants.PRODUCT_TYPE_1),
+                new Price(TestConstants.PRODUCT_PRICE)), -1);
     }
 
     @Test
     public final void testSetDifferentProductsAndCheckResults()
-            throws StorageException, BadPriceException {
+            throws StorageException, BadPriceException, ProductTypeException, ProductException {
         final Storage storage = new Storage();
 
-        final Product firstProductToAdd = new Product(new ProductType(PRODUCT_TYPE_1),
-                new Price(PRICE));
-        final Product secondProductToAdd = new Product(new ProductType(PRODUCT_TYPE_2),
-                new Price(PRICE));
+        final Product firstProductToAdd = new Product(new ProductType(
+                TestConstants.PRODUCT_TYPE_1), new Price(TestConstants.PRODUCT_PRICE));
+        final Product secondProductToAdd = new Product(new ProductType(
+                TestConstants.PRODUCT_TYPE_2), new Price(TestConstants.PRODUCT_PRICE));
 
         storage.setParticularProduct(firstProductToAdd, NUMBER_OF_ITEMS_TO_ADD);
         storage.setParticularProduct(secondProductToAdd, NUMBER_OF_ITEMS_TO_ADD + 1);
@@ -115,10 +115,11 @@ public class StorageTest {
 
     @Test
     public final void testAddZeroProductsAndCheckResult()
-            throws StorageException, BadPriceException {
+            throws StorageException, BadPriceException, ProductTypeException, ProductException {
         final Storage storage = new Storage();
 
-        final Product productToAdd = new Product(new ProductType(PRODUCT_TYPE_1), new Price(PRICE));
+        final Product productToAdd = new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
+                new Price(TestConstants.PRODUCT_PRICE));
 
         storage.setParticularProduct(productToAdd, 0);
 
@@ -127,10 +128,11 @@ public class StorageTest {
 
     @Test
     public final void testOverrideProductAndCheckResult()
-            throws StorageException, BadPriceException {
+            throws StorageException, BadPriceException, ProductTypeException, ProductException {
         final Storage storage = new Storage();
 
-        final Product productToAdd = new Product(new ProductType(PRODUCT_TYPE_1), new Price(PRICE));
+        final Product productToAdd = new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
+                new Price(TestConstants.PRODUCT_PRICE));
 
         storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD + 1);
         storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD);
@@ -140,10 +142,11 @@ public class StorageTest {
 
     @Test
     public final void testSetNumberAndZeroProductsAndCheckResult()
-            throws StorageException, BadPriceException {
+            throws StorageException, BadPriceException, ProductTypeException, ProductException {
         final Storage storage = new Storage();
 
-        final Product productToAdd = new Product(new ProductType(PRODUCT_TYPE_1), new Price(PRICE));
+        final Product productToAdd = new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
+                new Price(TestConstants.PRODUCT_PRICE));
 
         storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD);
         storage.setParticularProduct(productToAdd, 0);
