@@ -13,13 +13,11 @@ import org.junit.Test;
 import com.riddimsoft.exceptions.NonExistentCoinException;
 
 public class CoinTest {
-    private static final int EXISTENT_COIN_VALUE = 2;
-    private static final float NON_EXISTENT_COIN_VALUE = 0.51f;
     private static final int NUMBER_OF_FIRST_DENOMINATORS = 3;
 
     @Test
-    public void testCoinCreate() {
-        final float value = EXISTENT_COIN_VALUE;
+    public final void testCoinCreate() {
+        final float value = Coin.getMinimalDenomination();
 
         Coin coin;
         try {
@@ -32,12 +30,12 @@ public class CoinTest {
     }
 
     @Test(expected = NonExistentCoinException.class)
-    public void testCoinCreateNonExistent() throws NonExistentCoinException {
-        new Coin(NON_EXISTENT_COIN_VALUE);
+    public final void testCoinCreateNonExistent() throws NonExistentCoinException {
+        new Coin(Coin.getMinimalDenomination() * TestConstants.BAD_COIN_VALUE_MULTIPLIER);
     }
 
     @Test
-    public void testCanExpressValueWithAvailableDenominationsPositive() {
+    public final void testCanExpressValueWithAvailableDenominationsPositive() {
         final NavigableSet<Float> possibleValues = Coin.getPossibleValues();
         float value = 0f;
 
@@ -51,7 +49,7 @@ public class CoinTest {
     }
 
     @Test
-    public void testCanExpressValueWithAvailableDenominationsNagative() {
+    public final void testCanExpressValueWithAvailableDenominationsNagative() {
         final NavigableSet<Float> possibleValues = Coin.getPossibleValues();
         float value = 0f;
 
@@ -66,12 +64,12 @@ public class CoinTest {
     }
 
     @Test
-    public void testCanExpressValueWithAvailableDenominationsWithZero() {
+    public final void testCanExpressValueWithAvailableDenominationsWithZero() {
         assertFalse(Coin.canExpressValueWithAvailableDenominations(0));
     }
 
     @Test
-    public void testCanExpressValueWithAvailableDenominationsWithNegativeNumber() {
+    public final void testCanExpressValueWithAvailableDenominationsWithNegativeNumber() {
         assertFalse(Coin.canExpressValueWithAvailableDenominations(-1));
     }
 }

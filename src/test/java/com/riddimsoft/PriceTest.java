@@ -9,8 +9,6 @@ import com.riddimsoft.exceptions.BadPriceException;
 
 public class PriceTest {
     private static final int GREATER_VALUE_MULTIPLIER = 25;
-    private static final double BAD_VALUE_MULTIPLIER = 0.5;
-
 
     @Test
     public final void testPriceCreateSmallest() {
@@ -41,6 +39,7 @@ public class PriceTest {
 
     @Test(expected = BadPriceException.class)
     public final void testPriceCreateBad() throws BadPriceException {
-        new Price((float) (Coin.getMinimalDenomination() * BAD_VALUE_MULTIPLIER));
+        new Price((float) (Coin.getMinimalDenomination()
+                * TestConstants.BAD_COIN_VALUE_MULTIPLIER));
     }
 }
