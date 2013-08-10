@@ -39,9 +39,9 @@ public class StorageTest {
         storage.addCoin(firstCoinToAdd);
         storage.setParticularCoin(secondCoinToAdd, NUMBER_OF_ITEMS_TO_ADD);
 
-        assertEquals(storage.getCoins().size(), 2);
-        assertEquals(storage.getCoinsNumber(firstCoinToAdd), NUMBER_OF_ITEMS_TO_ADD + 1);
-        assertEquals(storage.getCoinsNumber(secondCoinToAdd), NUMBER_OF_ITEMS_TO_ADD);
+        assertEquals(2, storage.getCoins().size());
+        assertEquals(NUMBER_OF_ITEMS_TO_ADD + 1, storage.getCoinsNumber(firstCoinToAdd));
+        assertEquals(NUMBER_OF_ITEMS_TO_ADD, storage.getCoinsNumber(secondCoinToAdd));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class StorageTest {
 
         storage.setParticularCoin(coinToAdd, 0);
 
-        assertEquals(storage.getCoinsNumber(coinToAdd), 0);
+        assertEquals(0, storage.getCoinsNumber(coinToAdd));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class StorageTest {
         storage.setParticularCoin(coinToAdd, NUMBER_OF_ITEMS_TO_ADD);
         storage.setParticularCoin(coinToAdd, NUMBER_OF_ITEMS_TO_ADD + 1);
 
-        assertEquals(storage.getCoinsNumber(coinToAdd), NUMBER_OF_ITEMS_TO_ADD + 1);
+        assertEquals(NUMBER_OF_ITEMS_TO_ADD + 1, storage.getCoinsNumber(coinToAdd));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class StorageTest {
         storage.setParticularCoin(coinToAdd, NUMBER_OF_ITEMS_TO_ADD);
         storage.setParticularCoin(coinToAdd, 0);
 
-        assertEquals(storage.getCoinsNumber(coinToAdd), 0);
+        assertEquals(0, storage.getCoinsNumber(coinToAdd));
     }
 
     @Test(expected = StorageException.class)
@@ -108,9 +108,9 @@ public class StorageTest {
         storage.setParticularProduct(firstProductToAdd, NUMBER_OF_ITEMS_TO_ADD);
         storage.setParticularProduct(secondProductToAdd, NUMBER_OF_ITEMS_TO_ADD + 1);
 
-        assertEquals(storage.getProducts().size(), 2);
-        assertEquals(storage.getProductsNumber(firstProductToAdd), NUMBER_OF_ITEMS_TO_ADD);
-        assertEquals(storage.getProductsNumber(secondProductToAdd), NUMBER_OF_ITEMS_TO_ADD + 1);
+        assertEquals(2, storage.getProducts().size());
+        assertEquals(NUMBER_OF_ITEMS_TO_ADD, storage.getProductsNumber(firstProductToAdd));
+        assertEquals(NUMBER_OF_ITEMS_TO_ADD + 1, storage.getProductsNumber(secondProductToAdd));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class StorageTest {
 
         storage.setParticularProduct(productToAdd, 0);
 
-        assertEquals(storage.getProductsNumber(productToAdd), 0);
+        assertEquals(0, storage.getProductsNumber(productToAdd));
     }
 
     @Test
@@ -135,7 +135,7 @@ public class StorageTest {
         storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD + 1);
         storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD);
 
-        assertEquals(storage.getProductsNumber(productToAdd), NUMBER_OF_ITEMS_TO_ADD);
+        assertEquals(NUMBER_OF_ITEMS_TO_ADD, storage.getProductsNumber(productToAdd));
     }
 
     @Test
@@ -148,6 +148,6 @@ public class StorageTest {
         storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD);
         storage.setParticularProduct(productToAdd, 0);
 
-        assertEquals(storage.getProductsNumber(productToAdd), 0);
+        assertEquals(0, storage.getProductsNumber(productToAdd));
     }
 }
