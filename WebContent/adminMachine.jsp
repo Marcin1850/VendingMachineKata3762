@@ -15,8 +15,8 @@
         </tr>
         <tr>
             <td><s:property value="shelves[0].number" /></td>
-            <td><s:property value="shelves[0].productType.name" /></td>
-            <td><s:property value="shelves[0].quantity" default="0" /></td>
+            <td><s:property value="shelves[0].product.productType.name" /></td>
+            <td><s:property value="shelves[0].product.quantity" default="0" /></td>
         </tr>
     </table>
     <hr/>
@@ -25,10 +25,10 @@
         <s:form action="adminMachine" method="post">
             <s:textfield
                 label="Shelf 1"
-                name="shelves[0].productType.name"
+                name="shelves[0].product.productType.name"
                 size="20" />
             <s:textfield
-                name="shelves[0].quantity"
+                name="shelves[0].product.quantity"
                 size="5" />
             <sx:submit targets="adminMachineDiv" value="Actualize shelves" showLoadingText="true" />
         </s:form>
