@@ -5,9 +5,6 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="storage" class="com.riddimsoft.Storage" />
-    <bean id="productDispenser" class="com.riddimsoft.ProductDispenser">
-        <property name="storage" ref="storage" />
-    </bean>
     <bean id="productType" class="com.riddimsoft.ProductType">
         <constructor-arg value="Cola" />
     </bean>
@@ -25,9 +22,13 @@
         <constructor-arg ref="productType" />
         <constructor-arg ref="priceList" />
     </bean>
-    <bean id="shelf" class="com.riddimsoft.Shelf">
+    <bean id="shelf1" class="com.riddimsoft.Shelf">
         <constructor-arg ref="product" />
-        <constructor-arg value="2" />
+        <constructor-arg value="5" />
+    </bean>
+    <bean id="shelf2" class="com.riddimsoft.Shelf">
+        <constructor-arg ref="product" />
+        <constructor-arg value="10" />
     </bean>
 
 </beans>

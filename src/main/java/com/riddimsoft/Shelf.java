@@ -1,6 +1,5 @@
 package com.riddimsoft;
 
-import com.riddimsoft.exceptions.BadShelfNumberException;
 import com.riddimsoft.exceptions.ShelfException;
 
 public class Shelf {
@@ -8,22 +7,12 @@ public class Shelf {
     private Product product;
     private int quantity;
 
-    public Shelf(final int number, final Product product, final int quantity)
-            throws BadShelfNumberException, ShelfException {
-        assertShelfNumber(number);
+    public Shelf(final Product product, final int quantity) throws ShelfException {
         assertProductNotNull(product);
         assertProductQuantity(quantity);
 
-        this.number = number;
         this.product = product;
         this.quantity = quantity;
-    }
-
-    private void assertShelfNumber(final int number)
-            throws BadShelfNumberException {
-        if (number < 0) {
-            throw new BadShelfNumberException();
-        }
     }
 
     private void assertProductQuantity(final int quantity) throws ShelfException {
@@ -37,16 +26,6 @@ public class Shelf {
         if (product == null) {
             throw new ShelfException("Product cannot be null");
         }
-    }
-
-    public final int getNumber() {
-        return number;
-    }
-
-    public final void setNumber(final int number) throws BadShelfNumberException {
-        assertShelfNumber(number);
-
-        this.number = number;
     }
 
     public final Product getProduct() {

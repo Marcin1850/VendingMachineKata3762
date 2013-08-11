@@ -3,6 +3,10 @@ package com.riddimsoft;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.riddimsoft.exceptions.BadPriceException;
 import com.riddimsoft.exceptions.NonExistentCoinException;
@@ -10,26 +14,33 @@ import com.riddimsoft.exceptions.ProductException;
 import com.riddimsoft.exceptions.ProductTypeException;
 import com.riddimsoft.exceptions.StorageException;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration
 public class StorageTest {
     private static final int NUMBER_OF_ITEMS_TO_ADD = 5;
+
+    @Autowired
+    private final Storage storage = null; // to init per test case ?
+    @Autowired
+    private final Shelf shelf1 = null;
+    @Autowired
+    private final Shelf shelf2 = null;
 
     @Test(expected = StorageException.class)
     public final void testSetNullCoin()
             throws StorageException, NonExistentCoinException {
-        (new Storage()).setParticularCoin(null, 0);
+        storage.setParticularCoin(null, 0);
     }
 
     @Test(expected = StorageException.class)
     public final void testSetNagativeNumberOfCoins()
             throws StorageException, NonExistentCoinException {
-        (new Storage()).setParticularCoin(new Coin(Coin.getMinimalDenomination()), -1);
+        storage.setParticularCoin(new Coin(Coin.getMinimalDenomination()), -1);
     }
 
     @Test
     public final void testSetAndAddCoinsAndCheckResults()
             throws StorageException, NonExistentCoinException {
-        final Storage storage = new Storage();
-
         final Coin firstCoinToAdd = new Coin(Coin.getMinimalDenomination());
         final Coin secondCoinToAdd = new Coin(Coin.getPossibleValues().higher(firstCoinToAdd.
                 getValue()));
@@ -46,8 +57,6 @@ public class StorageTest {
     @Test
     public final void testAddZeroCoinsAndCheckResult()
             throws StorageException, NonExistentCoinException {
-        final Storage storage = new Storage();
-
         final Coin coinToAdd = new Coin(Coin.getMinimalDenomination());
 
         storage.setParticularCoin(coinToAdd, 0);
@@ -58,8 +67,6 @@ public class StorageTest {
     @Test
     public final void testOverrideCoinsAndCheckResult()
             throws StorageException, NonExistentCoinException {
-        final Storage storage = new Storage();
-
         final Coin coinToAdd = new Coin(Coin.getMinimalDenomination());
 
         storage.setParticularCoin(coinToAdd, NUMBER_OF_ITEMS_TO_ADD);
@@ -71,8 +78,6 @@ public class StorageTest {
     @Test
     public final void testSetNumberAndZeroCoinsAndCheckResult()
             throws StorageException, NonExistentCoinException {
-        final Storage storage = new Storage();
-
         final Coin coinToAdd = new Coin(Coin.getMinimalDenomination());
 
         storage.setParticularCoin(coinToAdd, NUMBER_OF_ITEMS_TO_ADD);
@@ -82,75 +87,33 @@ public class StorageTest {
     }
 
     @Test(expected = StorageException.class)
-    public final void testSetNullProduct()
+    public final void testSetNullShelf()
             throws StorageException {
-        (new Storage()).setParticularProduct(null, 0);
+        storage.setShelf(0, null);
     }
 
     @Test(expected = StorageException.class)
-    public final void testSetNagativeNumberOfProduct()
-            throws StorageException, BadPriceException, ProductTypeException, ProductException {
-        (new Storage()).setParticularProduct(new Product(
-                new ProductType(TestConstants.PRODUCT_TYPE_1),
-                new Price(TestConstants.PRODUCT_PRICE)), -1);
+    public final void testSetNegativeShelfNumber()
+            throws StorageException {
+        storage.setShelf(-1, shelf1);
     }
 
     @Test
-    public final void testSetDifferentProductsAndCheckResults()
+    public final void testSetDifferentShelvesAndCheckResults()
             throws StorageException, BadPriceException, ProductTypeException, ProductException {
-        final Storage storage = new Storage();
+        storage.setShelf(0, shelf1);
+        storage.setShelf(1, shelf2);
 
-        final Product firstProductToAdd = new Product(new ProductType(
-                TestConstants.PRODUCT_TYPE_1), new Price(TestConstants.PRODUCT_PRICE));
-        final Product secondProductToAdd = new Product(new ProductType(
-                TestConstants.PRODUCT_TYPE_2), new Price(TestConstants.PRODUCT_PRICE));
-
-        storage.setParticularProduct(firstProductToAdd, NUMBER_OF_ITEMS_TO_ADD);
-        storage.setParticularProduct(secondProductToAdd, NUMBER_OF_ITEMS_TO_ADD + 1);
-
-        assertEquals(2, storage.getProducts().size());
-        assertEquals(NUMBER_OF_ITEMS_TO_ADD, storage.getProductsQuantity(firstProductToAdd));
-        assertEquals(NUMBER_OF_ITEMS_TO_ADD + 1, storage.getProductsQuantity(secondProductToAdd));
-    }
-
-    @Test
-    public final void testAddZeroProductsAndCheckResult()
-            throws StorageException, BadPriceException, ProductTypeException, ProductException {
-        final Storage storage = new Storage();
-
-        final Product productToAdd = new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
-                new Price(TestConstants.PRODUCT_PRICE));
-
-        storage.setParticularProduct(productToAdd, 0);
-
-        assertEquals(0, storage.getProductsQuantity(productToAdd));
+        assertEquals(shelf1, storage.getShelf(0));
+        assertEquals(shelf2, storage.getShelf(1));
     }
 
     @Test
     public final void testOverrideProductAndCheckResult()
             throws StorageException, BadPriceException, ProductTypeException, ProductException {
-        final Storage storage = new Storage();
+        storage.setShelf(0, shelf1);
+        storage.setShelf(0, shelf2);
 
-        final Product productToAdd = new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
-                new Price(TestConstants.PRODUCT_PRICE));
-
-        storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD + 1);
-        storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD);
-
-        assertEquals(NUMBER_OF_ITEMS_TO_ADD, storage.getProductsQuantity(productToAdd));
-    }
-
-    @Test
-    public final void testSetNumberAndZeroProductsAndCheckResult()
-            throws StorageException, BadPriceException, ProductTypeException, ProductException {
-        final Storage storage = new Storage();
-
-        final Product productToAdd = new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
-                new Price(TestConstants.PRODUCT_PRICE));
-
-        storage.setParticularProduct(productToAdd, NUMBER_OF_ITEMS_TO_ADD);
-        storage.setParticularProduct(productToAdd, 0);
-
-        assertEquals(0, storage.getProductsQuantity(productToAdd));
+        assertEquals(shelf2, storage.getShelf(0));
     }
 }
