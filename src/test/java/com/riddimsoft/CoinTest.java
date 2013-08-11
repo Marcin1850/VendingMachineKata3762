@@ -72,4 +72,15 @@ public class CoinTest {
     public final void testCanExpressValueWithAvailableDenominationsWithNegativeNumber() {
         assertFalse(Coin.canExpressValueWithAvailableDenominations(-1));
     }
+
+    @Test
+    public final void testCompareTo() throws NonExistentCoinException {
+        final NavigableSet<Float> possibleCoinValues = Coin.getPossibleValues();
+        final Coin firstCoin = new Coin(possibleCoinValues.first());
+        final Coin secondCoin = new Coin(possibleCoinValues.higher(firstCoin.getValue()));
+
+        assertEquals(-1, firstCoin.compareTo(secondCoin));
+        assertEquals(0, firstCoin.compareTo(firstCoin));
+        assertEquals(1, secondCoin.compareTo(firstCoin));
+    }
 }

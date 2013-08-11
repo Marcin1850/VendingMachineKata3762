@@ -7,11 +7,11 @@ import java.util.TreeSet;
 
 import com.riddimsoft.exceptions.NonExistentCoinException;
 
-public final class Coin {
+public final class Coin implements Comparable<Coin> {
     private static final NavigableSet<Float> POSSIBLE_VALUES =
             new TreeSet<Float>(Arrays.asList(5.0f, 2.0f, 1.0f, 0.5f, 0.2f, 0.1f));
 
-    private final float value;
+    private final Float value;
 
     public Coin(final float value) throws NonExistentCoinException {
         if (!POSSIBLE_VALUES.contains(value)) {
@@ -49,5 +49,10 @@ public final class Coin {
         }
 
         return false;
+    }
+
+    @Override
+    public int compareTo(final Coin other) {
+        return this.value.compareTo(other.value);
     }
 }

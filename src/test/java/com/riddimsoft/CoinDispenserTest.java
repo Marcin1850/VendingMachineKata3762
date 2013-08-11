@@ -54,16 +54,16 @@ public class CoinDispenserTest {
         assertEquals(expectedCoins, coinDispenser.resetAndReturnCoins());
     }
 
-    // commented out - not the best idea
+    // commented out - test of a private method - might be useful for development
 /*  @Test
-    public final void testLimitCoinsToLookForRest()
+    public final void testLimitCoinsToLookForChange()
             throws CoinDispenserException, NoSuchMethodException, NonExistentCoinException,
             IllegalAccessException, InvocationTargetException {
         final CoinDispenser coinDispenser = new CoinDispenser(new Storage());
         final Class[] parameterTypes = new Class[2];
         parameterTypes[0] = Float.class;
         parameterTypes[1] = HashMap.class;
-        final Method m = coinDispenser.getClass().getDeclaredMethod("limitCoinsToLookForRest",
+        final Method m = coinDispenser.getClass().getDeclaredMethod("limitCoinsToLookForChange",
                 parameterTypes);
         m.setAccessible(true);
         final Object[] parameters = new Object[2];
