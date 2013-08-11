@@ -21,7 +21,7 @@ public class Shelf {
 
     private void assertShelfNumber(final int number)
             throws BadShelfNumberException {
-        if (number <= 0) {
+        if (number < 0) {
             throw new BadShelfNumberException();
         }
     }

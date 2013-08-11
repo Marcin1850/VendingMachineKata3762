@@ -1,45 +1,42 @@
 package com.riddimsoft;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.riddimsoft.exceptions.BadPriceException;
-import com.riddimsoft.exceptions.CoinDispenserException;
-import com.riddimsoft.exceptions.NonExistentCoinException;
 import com.riddimsoft.exceptions.ProductDispenserException;
-import com.riddimsoft.exceptions.ProductException;
-import com.riddimsoft.exceptions.ProductTypeException;
+import com.riddimsoft.exceptions.ShelfException;
 import com.riddimsoft.exceptions.StorageException;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration
 public class ProductDispenserTest {
-    private static final int NUMBER_OF_PRODUCTS_TO_ADD = 3;
+    @Autowired
+    private final Storage storage = null;
+    @Autowired
+    private final ProductDispenser productDispenser = null;
+    @Autowired
+    private final Shelf shelf = null;
 
-    @Test(expected = ProductDispenserException.class)
-    public final void testGetNonExistentProductFromStorage()
-            throws CoinDispenserException, NonExistentCoinException, ProductException,
-            ProductTypeException, BadPriceException, ProductDispenserException, StorageException {
-        final Storage storage = new Storage();
-        final ProductDispenser productDispenser = new ProductDispenser(storage);
-        final Product product = new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
-                new Price(TestConstants.PRODUCT_PRICE));
-
-        productDispenser.getProductFromStorage(product);
+    @Test
+    public final void testGetNonExistentShelfFromStorage()
+            throws ProductDispenserException, StorageException, ShelfException {
+        assertFalse(productDispenser.getProductFromStorage(0));
     }
 
     @Test
-    public final void testGetExistentProductFromStorageAndCheckState()
-            throws CoinDispenserException, NonExistentCoinException, ProductException,
-            ProductTypeException, BadPriceException, ProductDispenserException, StorageException {
-        final Storage storage = new Storage();
-        final ProductDispenser productDispenser = new ProductDispenser(storage);
-        final Product product = new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
-                new Price(TestConstants.PRODUCT_PRICE));
+    public final void testGetExistentProductFromStorageAndCheckQuantityInStorage()
+            throws StorageException, ProductDispenserException, ShelfException {
+        storage.setShelf(1, shelf);
 
-        storage.setParticularProduct(product, NUMBER_OF_PRODUCTS_TO_ADD);
+        assertTrue(productDispenser.getProductFromStorage(1));
 
-        productDispenser.getProductFromStorage(product);
-
-        assertEquals(NUMBER_OF_PRODUCTS_TO_ADD - 1, storage.getProductsQuantity(product));
+        assertEquals(1, storage.getShelf(1).getQuantity());
     }
 }

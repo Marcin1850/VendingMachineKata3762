@@ -4,7 +4,7 @@ import com.riddimsoft.exceptions.ProductTypeException;
 
 
 public final class ProductType {
-    private String name;
+    private final String name;
 
     public ProductType(final String name) throws ProductTypeException {
         assertNameNotEmpty(name);
@@ -17,12 +17,6 @@ public final class ProductType {
         if ((name == null) || "".equals(name)) {
             throw new ProductTypeException("Name cannot be null");
         }
-    }
-
-    public void setName(final String name) throws ProductTypeException {
-        assertNameNotEmpty(name);
-
-        this.name = name;
     }
 
     public String getName() {

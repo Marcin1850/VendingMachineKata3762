@@ -5,13 +5,13 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="productType1" class="com.riddimsoft.ProductType">
-        <property name="name" value="Cola" />
+        <constructor-arg value="Cola" />
     </bean>
     <bean id="productType2" class="com.riddimsoft.ProductType">
-        <property name="name" value="Fanta" />
+        <constructor-arg value="Fanta" />
     </bean>
     <bean id="price1" class="com.riddimsoft.Price">
-        <property name="value" value="3.5" />
+        <constructor-arg value="3.5" />
     </bean>
     <bean id="priceList" class="com.riddimsoft.PriceList">
         <property name="priceMap">

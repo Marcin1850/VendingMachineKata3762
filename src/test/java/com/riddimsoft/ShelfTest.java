@@ -16,12 +16,4 @@ public class ShelfTest {
         new Shelf(-1, new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
                 new Price(TestConstants.PRODUCT_PRICE)));
     }
-
-    @Test(expected = BadShelfNumberException.class)
-    public final void testShelfCreateWithZeroNumber()
-            throws BadShelfNumberException, ShelfException, ProductException, ProductTypeException,
-            BadPriceException {
-        new Shelf(0, new Product(new ProductType(TestConstants.PRODUCT_TYPE_1),
-                new Price(TestConstants.PRODUCT_PRICE)));
-    }
 }

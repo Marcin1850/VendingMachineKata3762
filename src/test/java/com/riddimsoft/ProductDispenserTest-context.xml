@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="storage" class="com.riddimsoft.Storage" />
+    <bean id="productDispenser" class="com.riddimsoft.ProductDispenser">
+        <property name="storage" ref="storage" />
+    </bean>
+    <bean id="productType" class="com.riddimsoft.ProductType">
+        <constructor-arg value="Cola" />
+    </bean>
+    <bean id="price" class="com.riddimsoft.Price">
+        <constructor-arg value="3.5" />
+    </bean>
+    <bean id="priceList" class="com.riddimsoft.PriceList">
+        <property name="priceMap">
+            <map>
+                <entry key-ref="productType" value-ref="price" />
+            </map>
+        </property>
+    </bean>
+    <bean id="product" class="com.riddimsoft.Product">
+        <constructor-arg ref="productType" />
+        <constructor-arg ref="priceList" />
+    </bean>
+    <bean id="shelf" class="com.riddimsoft.Shelf">
+        <constructor-arg value="1" />
+        <constructor-arg ref="product" />
+        <constructor-arg value="2" />
+    </bean>
+
+</beans>

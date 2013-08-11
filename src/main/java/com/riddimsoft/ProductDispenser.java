@@ -6,9 +6,9 @@ import com.riddimsoft.exceptions.StorageException;
 
 
 public class ProductDispenser {
-    private final Storage storage;
+    private Storage storage;
 
-    public ProductDispenser(final Storage storage) throws ProductDispenserException {
+    public final void setStorage(final Storage storage) throws ProductDispenserException {
         assertStorageNotNull(storage);
 
         this.storage = storage;
