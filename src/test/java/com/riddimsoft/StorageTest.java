@@ -20,7 +20,7 @@ public class StorageTest {
     private static final int NUMBER_OF_ITEMS_TO_ADD = 5;
 
     @Autowired
-    private final Storage storage = null; // to init per test case ?
+    private final Storage storage = null;
     @Autowired
     private final Shelf shelf1 = null;
     @Autowired
