@@ -6,7 +6,11 @@ import com.riddimsoft.exceptions.PriceListException;
 
 
 public class PriceList {
-    private final HashMap<ProductType, Price> list = new HashMap<ProductType, Price>();
+    private HashMap<ProductType, Price> priceMap = new HashMap<ProductType, Price>();
+
+    public final void setPriceMap(final HashMap<ProductType, Price> priceMap) {
+        this.priceMap = priceMap;
+    }
 
     private void assertProductTypeNotNull(final ProductType productType)
             throws PriceListException {
@@ -26,13 +30,13 @@ public class PriceList {
         assertProductTypeNotNull(productType);
         assertPriceNotNull(price);
 
-        list.put(productType, price);
+        priceMap.put(productType, price);
     }
 
     public final boolean isPriceSet(final ProductType productType) throws PriceListException {
         assertProductTypeNotNull(productType);
 
-        return list.containsKey(productType);
+        return priceMap.containsKey(productType);
     }
 
     public final Price getPrice(final ProductType productType) throws PriceListException {
@@ -42,7 +46,7 @@ public class PriceList {
             throw new PriceListException("No price to get");
         }
 
-        return list.get(productType);
+        return priceMap.get(productType);
     }
 
     // TODO - can't do it without synchronization with existing products
@@ -53,6 +57,6 @@ public class PriceList {
             throw new PriceListException("No price to remove");
         }
 
-        list.remove(productType);
+        priceMap.remove(productType);
     }*/
 }
