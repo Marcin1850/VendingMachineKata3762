@@ -10,7 +10,7 @@
 
 <style>
 .errorMessage {color:red;}
-.blueBg {background-color:blue;}
+.aquaBg {background-color:aqua;}
 .darkKhakiBg {background-color:darkKhaki;}
 .greenYellowBg {background-color:greenYellow;}
 </style>
@@ -37,6 +37,23 @@
             </tr>
         </s:iterator>
     </table>
+
+    <hr/>
+
+    <p>Prices:</p>
+    <table border="1" class="aquaBg">
+        <tr>
+            <td>Product</td>
+            <td>Price</td>
+        </tr>
+        <s:iterator value="priceList.priceMap">
+            <tr>
+                <td><s:property value="key.name" /></td>
+                <td><s:property value="value.value" /></td>
+            </tr>
+        </s:iterator>
+    </table>
+
     <hr/>
 
     <p>

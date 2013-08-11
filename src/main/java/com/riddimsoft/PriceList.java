@@ -8,6 +8,10 @@ import com.riddimsoft.exceptions.PriceListException;
 public class PriceList {
     private HashMap<ProductType, Price> priceMap = new HashMap<ProductType, Price>();
 
+    public final HashMap<ProductType, Price> getPriceMap() {
+        return priceMap;
+    }
+
     public final void setPriceMap(final HashMap<ProductType, Price> priceMap) {
         this.priceMap = priceMap;
     }

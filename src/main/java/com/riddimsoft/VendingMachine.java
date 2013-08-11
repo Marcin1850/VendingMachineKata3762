@@ -7,6 +7,7 @@ public class VendingMachine extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
     private Storage storage;
+    private PriceList priceList;
     private String otherValue;
 
     public final Storage getStorage() {
@@ -15,6 +16,14 @@ public class VendingMachine extends ActionSupport {
 
     public final void setStorage(final Storage storage) {
         this.storage = storage;
+    }
+
+    public final PriceList getPriceList() {
+        return priceList;
+    }
+
+    public final void setPriceList(final PriceList priceList) {
+        this.priceList = priceList;
     }
 
     public final String getOtherValue() {
@@ -27,6 +36,8 @@ public class VendingMachine extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        /**/final int a = 5 + 9;
+
         return SUCCESS;
     }
 }
