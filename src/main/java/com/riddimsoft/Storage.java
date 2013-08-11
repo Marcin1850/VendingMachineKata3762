@@ -18,6 +18,10 @@ public class Storage {
         this.shelves = shelves;
     }
 
+    public final Shelf[] getShelves() {
+        return shelves;
+    }
+
     private void assertCoinNotNull(final Coin coin) throws StorageException {
         if (coin == null) {
             throw new StorageException("Coin can't be empty");

@@ -8,7 +8,7 @@
 
     <display-name>Struts 2</display-name>
     <welcome-file-list>
-        <welcome-file>machine.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
     <listener>

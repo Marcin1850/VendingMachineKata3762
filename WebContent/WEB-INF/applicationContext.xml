@@ -55,8 +55,6 @@
 
     <bean id="com.riddimsoft.VendingMachine" class="com.riddimsoft.VendingMachine">
         <property name="storage" ref="storage" />
-
-        <property name="otherValue" value="Hello World! from arpit" />
     </bean>
 
 </beans>
