@@ -1,14 +1,15 @@
 package com.riddimsoft;
 
-import com.opensymphony.xwork2.ActionSupport;
 
-
-public class VendingMachine extends ActionSupport {
+public class VendingMachine {
     private static final long serialVersionUID = 1L;
 
     private Storage storage;
     private PriceList priceList;
-    private String otherValue;
+    private Display display;
+    private CoinDispenser coinDispenser;
+    private float insertedCoinValue = 0f;
+
 
     public final Storage getStorage() {
         return storage;
@@ -26,18 +27,33 @@ public class VendingMachine extends ActionSupport {
         this.priceList = priceList;
     }
 
-    public final String getOtherValue() {
-        return otherValue;
+    public final Display getDisplay() {
+        return display;
     }
 
-    public final void setOtherValue(final String otherValue) {
-        this.otherValue = otherValue;
+    public final void setDisplay(final Display display) {
+        this.display = display;
     }
 
-    @Override
-    public String execute() throws Exception {
-        /**/final int a = 5 + 9;
+    public final void setCoinDispenser(final CoinDispenser coinDispenser) {
+        this.coinDispenser = coinDispenser;
+    }
 
-        return SUCCESS;
+    public final float getInsertedCoinValue() {
+        return insertedCoinValue;
+    }
+
+    public final void setInsertedCoinValue(final float insertedCoinValue) {
+        this.insertedCoinValue = insertedCoinValue;
+    }
+
+    public final String execute() throws Exception {
+        if (insertedCoinValue != 0f) {
+            display.addValue(coinDispenser.addCoinAndReturnSum(new Coin(insertedCoinValue)));
+
+            insertedCoinValue = 0f;
+        }
+
+        return "success";
     }
 }

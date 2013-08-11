@@ -56,7 +56,25 @@
 
     <hr/>
 
+    <table border="2" class="darkKhakiBg">
+        <tr>
+            <td>Inserted value</td>
+            <td><s:property value="display.value" /></td>
+        </tr>
+    </table>
+
+    <hr/>
+
     <p>
+        <s:form action="machine" method="post">
+            <s:select label="Choose denomianator"
+                    list="@com.riddimsoft.Coin@getPossibleValues()"
+                    name="insertedCoinValue" />
+            <s:submit value="Throw coin" />
+        </s:form>
+    </p>
+
+    <%-- <p>
         <s:form action="machine" method="post">
             <s:textfield
                 label="Shelf 1"
@@ -65,8 +83,8 @@
             <s:textfield
                 name="storage.shelves[0].quantity"
                 size="5" />
-            <s:submit value="Actualize shelves" showLoadingText="true" />
+            <s:submit value="Actualize shelves" />
         </s:form>
-    </p>
+    </p> --%>
 </body>
 </html>

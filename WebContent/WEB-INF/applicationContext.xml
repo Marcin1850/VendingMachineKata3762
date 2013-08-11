@@ -53,8 +53,17 @@
         </property>
     </bean>
 
+    <bean id="display" class="com.riddimsoft.Display" />
+
+    <bean id="coinDispenser" class="com.riddimsoft.CoinDispenser">
+        <constructor-arg ref="storage" />
+    </bean>
+
     <bean id="com.riddimsoft.VendingMachine" class="com.riddimsoft.VendingMachine">
         <property name="storage" ref="storage" />
+        <property name="priceList" ref="priceList" />
+        <property name="display" ref="display" />
+        <property name="coinDispenser" ref="coinDispenser" />
     </bean>
 
 </beans>
