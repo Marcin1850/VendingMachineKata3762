@@ -8,10 +8,14 @@ public class Storage {
     private static final int SHELVES_NUMBER = 20;
 
     private final HashMap<Coin, Integer> coins = new HashMap<Coin, Integer>();
-    private final Shelf[] shelves = new Shelf[SHELVES_NUMBER];
+    private Shelf[] shelves = new Shelf[SHELVES_NUMBER];
 
     public final HashMap<Coin, Integer> getCoins() {
         return coins;
+    }
+
+    public final void setShelves(final Shelf[] shelves) {
+        this.shelves = shelves;
     }
 
     private void assertCoinNotNull(final Coin coin) throws StorageException {

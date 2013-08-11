@@ -14,9 +14,9 @@
             <td>Quantity</td>
         </tr>
         <tr>
-            <td><s:property value="shelves[0].number" /></td>
-            <td><s:property value="shelves[0].product.productType.name" /></td>
-            <td><s:property value="shelves[0].product.quantity" default="0" /></td>
+            <td><s:property value="1" /></td>
+            <td><s:property value="storage.shelves[0].product.productType.name" /></td>
+            <td><s:property value="storage.shelves[0].quantity" /></td>
         </tr>
     </table>
     <hr/>

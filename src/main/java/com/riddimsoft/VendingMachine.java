@@ -1,16 +1,21 @@
 package com.riddimsoft;
 
-import java.util.ArrayList;
-
 import com.opensymphony.xwork2.ActionSupport;
-import com.riddimsoft.exceptions.VendingMachineException;
 
 
 public class VendingMachine extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
-    private ArrayList<Shelf> shelves;
+    private Storage storage;
     private String otherValue;
+
+    public final Storage getStorage() {
+        return storage;
+    }
+
+    public final void setStorage(final Storage storage) {
+        this.storage = storage;
+    }
 
     public final String getOtherValue() {
         return otherValue;
@@ -18,17 +23,6 @@ public class VendingMachine extends ActionSupport {
 
     public final void setOtherValue(final String otherValue) {
         this.otherValue = otherValue;
-    }
-
-    public final ArrayList<Shelf> getShelves() {
-        return shelves;
-    }
-
-    public final void setShelves(final ArrayList<Shelf> shelves) throws VendingMachineException {
-        if (shelves == null) {
-            throw new VendingMachineException("Shelves can not be null");
-        }
-        this.shelves = shelves;
     }
 
     @Override

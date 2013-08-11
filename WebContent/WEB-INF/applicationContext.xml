@@ -2,4 +2,61 @@
     "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans default-autowire="autodetect">
+
+    <bean id="productType1" class="com.riddimsoft.ProductType">
+        <constructor-arg value="Cola" />
+    </bean>
+    <bean id="productType2" class="com.riddimsoft.ProductType">
+        <constructor-arg value="Fanta" />
+    </bean>
+
+    <bean id="price1" class="com.riddimsoft.Price">
+        <constructor-arg type="float" value="2.5" />
+    </bean>
+    <bean id="price2" class="com.riddimsoft.Price">
+        <constructor-arg type="float" value="3.5" />
+    </bean>
+
+    <bean id="priceList" class="com.riddimsoft.PriceList">
+        <property name="priceMap">
+            <map>
+                <entry key-ref="productType1" value-ref="price1" />
+                <entry key-ref="productType2" value-ref="price2" />
+            </map>
+        </property>
+    </bean>
+
+    <bean id="product1" class="com.riddimsoft.Product">
+        <constructor-arg ref="productType1" />
+        <constructor-arg ref="priceList" />
+    </bean>
+    <bean id="product2" class="com.riddimsoft.Product">
+        <constructor-arg ref="productType2" />
+        <constructor-arg ref="priceList" />
+    </bean>
+
+    <bean id="shelf1" class="com.riddimsoft.Shelf">
+        <constructor-arg ref="product1" />
+        <constructor-arg type="int" value="5" />
+    </bean>
+    <bean id="shelf2" class="com.riddimsoft.Shelf">
+        <constructor-arg ref="product2" />
+        <constructor-arg type="int" value="10" />
+    </bean>
+
+    <bean id="storage" class="com.riddimsoft.Storage">
+        <property name="shelves">
+            <list>
+                <ref bean="shelf1" />
+                <ref bean="shelf2" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="com.riddimsoft.VendingMachine" class="com.riddimsoft.VendingMachine">
+        <property name="storage" ref="storage" />
+
+        <property name="otherValue" value="Hello World! from arpit" />
+    </bean>
+
 </beans>
