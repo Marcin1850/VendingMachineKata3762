@@ -1,28 +1,25 @@
 package com.riddimsoft;
 
+import com.riddimsoft.exceptions.PriceListException;
 import com.riddimsoft.exceptions.ProductException;
 
 public class Product {
     private final ProductType productType;
-    private final Price price;
 
-    public Product(final ProductType productType, final Price price) throws ProductException {
+    public Product(final ProductType productType, final PriceList priceList)
+            throws ProductException, PriceListException {
         if (productType == null) {
             throw new ProductException("Product type cannot be null");
         }
-        if (price == null) {
-            throw new ProductException("Price cannot be null");
+
+        if (!priceList.isPriceSet(productType)) {
+            throw new ProductException("Price for product cannot be found");
         }
 
         this.productType = productType;
-        this.price = price;
     }
 
     public final ProductType getProductType() {
         return productType;
-    }
-
-    public final Price getPrice() {
-        return price;
     }
 }

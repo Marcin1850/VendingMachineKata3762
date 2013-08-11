@@ -1,6 +1,7 @@
 package com.riddimsoft;
 
 import com.riddimsoft.exceptions.ProductDispenserException;
+import com.riddimsoft.exceptions.ShelfException;
 import com.riddimsoft.exceptions.StorageException;
 
 
@@ -13,30 +14,26 @@ public class ProductDispenser {
         this.storage = storage;
     }
 
-    public final void getProductFromStorage(final Product product)
-            throws ProductDispenserException, StorageException {
-        assertProductNotNull(product);
+    public final boolean getProductFromStorage(final int shelfNumber)
+            throws ProductDispenserException, StorageException, ShelfException {
+        if (!storage.isShelfSet(shelfNumber)) {
+            return false;
+        }
+        final Shelf shelf = storage.getShelf(shelfNumber);
 
-        final int productsQuantity = storage.getProductsQuantity(product);
-
-        if (productsQuantity == 0) {
-            throw new ProductDispenserException("No such product");
+        if (shelf.getQuantity() < 1) {
+            return false;
         }
 
-        storage.setParticularProduct(product, productsQuantity - 1);
+        shelf.setQuantity(shelf.getQuantity() - 1);
+
+        return true;
     }
 
     private void assertStorageNotNull(final Storage storage)
             throws ProductDispenserException {
         if (storage == null) {
             throw new ProductDispenserException("Storage cannot be null");
-        }
-    }
-
-    private void assertProductNotNull(final Product product)
-            throws ProductDispenserException {
-        if (product == null) {
-            throw new ProductDispenserException("Product cannot be null");
         }
     }
 }

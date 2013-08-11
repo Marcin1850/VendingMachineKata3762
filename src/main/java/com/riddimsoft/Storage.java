@@ -5,8 +5,10 @@ import java.util.HashMap;
 import com.riddimsoft.exceptions.StorageException;
 
 public class Storage {
+    private static final int SHELVES_NUMBER = 20;
+
     private final HashMap<Coin, Integer> coins = new HashMap<Coin, Integer>();
-    private final HashMap<Product, Integer> products = new HashMap<Product, Integer>();
+    private final Shelf[] shelves = new Shelf[SHELVES_NUMBER];
 
     public final HashMap<Coin, Integer> getCoins() {
         return coins;
@@ -49,40 +51,41 @@ public class Storage {
         }
     }
 
-    public final HashMap<Product, Integer> getProducts() {
-        return products;
-    }
-
-    private void assertProductNotNull(final Product product) throws StorageException {
-        if (product == null) {
-            throw new StorageException("Product can't be empty");
+    private void assertShelfNotNull(final Shelf shelf) throws StorageException {
+        if (shelf == null) {
+            throw new StorageException("Shelf can't be empty");
         }
     }
 
-    public final int getProductsQuantity(final Product product) throws StorageException {
-        assertProductNotNull(product);
-
-        if (products.containsKey(product)) {
-            return products.get(product);
-        } else {
-            return 0;
+    private void assertShelfNumber(final int number) throws StorageException {
+        if ((number < 0) || (number >= SHELVES_NUMBER)) {
+            throw new StorageException("Wrong shelf number");
         }
     }
 
-    public final void setParticularProduct(final Product product, final int quantity)
+    public final void setShelf(final int number, final Shelf shelf)
             throws StorageException {
-        assertProductNotNull(product);
+        assertShelfNumber(number);
+        assertShelfNotNull(shelf);
 
-        if (quantity < 0) {
-            throw new StorageException("Product quantity cannot be negative");
+        shelves[number] = shelf;
+    }
+
+    public final boolean isShelfSet(final int number)
+            throws StorageException {
+        assertShelfNumber(number);
+
+        return (shelves[number] != null);
+    }
+
+    public final Shelf getShelf(final int number)
+            throws StorageException {
+        assertShelfNumber(number);
+
+        if (!isShelfSet(number)) {
+            throw new StorageException("Shelf is not set");
         }
 
-        if (quantity == 0) {
-            products.remove(product);
-        } else {
-            products.put(product, quantity);
-        }
-
-     // TODO - zaktualizowac pricelist
+        return shelves[number];
     }
 }
