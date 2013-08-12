@@ -69,7 +69,7 @@ public class VendingMachine {
 
     public final String execute() throws Exception {
         if (insertedCoinValue != 0f) {
-            display.addValue(coinDispenser.addCoinAndReturnSum(new Coin(insertedCoinValue)));
+            display.setValue(coinDispenser.addCoinAndReturnSum(new Coin(insertedCoinValue)));
 
             insertedCoinValue = 0f;
         }

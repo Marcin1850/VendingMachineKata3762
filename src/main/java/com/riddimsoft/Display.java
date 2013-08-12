@@ -13,11 +13,11 @@ public class Display {
         this.value = 0f;
     }
 
-    public final void addValue(final float value) throws DisplayException {
+    public final void setValue(final float value) throws DisplayException {
         if (value < 0f) {
-            throw new DisplayException("Value to add cannot be negative");
+            throw new DisplayException("Cannot set negative value");
         }
 
-        this.value += value;
+        this.value = value;
     }
 }
