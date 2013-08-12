@@ -12,5 +12,9 @@
             <result name="success">/machine.jsp</result>
             <result name="input">/machine.jsp</result>
         </action>
+
+        <action name="cancelOrder" class="com.riddimsoft.VendingMachine" method="cancelOrder">
+            <result>/machine.jsp</result>
+        </action>
     </package>
 </struts>

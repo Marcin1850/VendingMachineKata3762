@@ -3,7 +3,6 @@ package com.riddimsoft;
 import com.riddimsoft.exceptions.ShelfException;
 
 public class Shelf {
-    private int number;
     private Product product;
     private int quantity;
 

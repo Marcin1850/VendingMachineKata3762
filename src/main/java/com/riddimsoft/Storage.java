@@ -1,5 +1,6 @@
 package com.riddimsoft;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.riddimsoft.exceptions.StorageException;
@@ -20,6 +21,16 @@ public class Storage {
 
     public final Shelf[] getShelves() {
         return shelves;
+    }
+
+    public final ArrayList<Integer> getActiveShelfNumbers() {
+        final ArrayList<Integer> retNumbers = new ArrayList<Integer>();
+        for (int i = 0; i < shelves.length; i++) {
+            if (shelves[i] != null) {
+                retNumbers.add(i + 1);
+            }
+        }
+        return retNumbers;
     }
 
     private void assertCoinNotNull(final Coin coin) throws StorageException {

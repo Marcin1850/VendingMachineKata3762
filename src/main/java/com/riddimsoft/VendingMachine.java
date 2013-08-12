@@ -1,13 +1,14 @@
 package com.riddimsoft;
 
+import java.util.ArrayList;
+
 
 public class VendingMachine {
-    private static final long serialVersionUID = 1L;
-
     private Storage storage;
     private PriceList priceList;
     private Display display;
     private CoinDispenser coinDispenser;
+    private int selectedShelf = 0;
     private float insertedCoinValue = 0f;
 
 
@@ -39,12 +40,31 @@ public class VendingMachine {
         this.coinDispenser = coinDispenser;
     }
 
+    public final int getSelectedShelf() {
+        return selectedShelf;
+    }
+
+    public final void setSelectedShelf(final int selectedShelf) {
+        this.selectedShelf = selectedShelf;
+    }
+
     public final float getInsertedCoinValue() {
         return insertedCoinValue;
     }
 
     public final void setInsertedCoinValue(final float insertedCoinValue) {
         this.insertedCoinValue = insertedCoinValue;
+    }
+
+    public final String cancelOrder() throws Exception {
+        final ArrayList<Coin> coins = coinDispenser.resetAndReturnCoins();
+        // TODO - wyswietlic ze monety oddane
+
+        display.resetValue();
+
+        selectedShelf = 0;
+
+        return "success";
     }
 
     public final String execute() throws Exception {

@@ -65,6 +65,33 @@
 
     <hr/>
 
+    <s:form action="machine" method="post">
+        <s:select label="Choose shelf"
+                list="storage.activeShelfNumbers"
+                name="selectedShelf" />
+        <s:submit value="Select shelf" />
+    </s:form>
+
+    <s:form action="cancelOrder" method="post">
+        <s:submit value="Cancel order" />
+    </s:form>
+
+    <table border="2" class="darkKhakiBg">
+        <tr>
+            <td>Selected shelf</td>
+            <td>
+                <s:if test="%{selectedShelf == 0}">
+                    NONE
+                </s:if>
+                <s:else>
+                    <s:property value="selectedShelf" />
+                </s:else>
+            </td>
+        </tr>
+    </table>
+
+    <hr/>
+
     <p>
         <s:form action="machine" method="post">
             <s:select label="Choose denomianator"
