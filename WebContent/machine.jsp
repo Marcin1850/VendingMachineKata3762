@@ -98,7 +98,7 @@
             <s:select label="Choose denomianator"
                     list="@com.riddimsoft.Coin@getPossibleValues()"
                     name="insertedCoinValue" />
-            <s:submit value="Throw coin" disabled="%{selectedShelf == 0}" />
+            <s:submit value="Throw coin" action="throwCoin" disabled="%{selectedShelf == 0}" />
         </s:form>
     </p>
 
@@ -109,6 +109,12 @@
                 <s:iterator value="returnedCoins" id="coinValue">
                     <s:property value="coinValue"/><br/>
                 </s:iterator>
+            </td>
+        </tr>
+        <tr>
+            <td>Products returned</td>
+            <td>
+                <s:property value="returnedProduct"/><br/>
             </td>
         </tr>
     </table>

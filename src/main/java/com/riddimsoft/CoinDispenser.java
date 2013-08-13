@@ -34,8 +34,8 @@ public class CoinDispenser {
         }
     }
 
-    private void assertChangeNotNegativeOrZero(final float value) throws CoinDispenserException {
-        if (value <= 0) {
+    private void assertChangeNotNegative(final float value) throws CoinDispenserException {
+        if (value < 0) {
             throw new CoinDispenserException("Change cannot be zero nor negative");
         }
     }
@@ -51,22 +51,28 @@ public class CoinDispenser {
         return sumOfCoinValues;
     }
 
-    public final ArrayList<String> resetAndReturnCoins() {
-        final ArrayList<String> retValues = new ArrayList<String>();
-        for (final Coin coin : collectedCoins) {
-            retValues.add(String.format("%.2f", coin.getValue()));
-        }
+    public final ArrayList<Coin> resetAndReturnCoins() {
+        final ArrayList<Coin> retCoins = collectedCoins;
 
         collectedCoins.clear();
         sumOfCoinValues = 0;
 
-        return retValues;
+        return retCoins;
+    }
+
+    public final void resetAndAddCoinsToStorage() throws StorageException {
+        for (final Coin coin : collectedCoins) {
+            storage.addCoin(coin);
+        }
+
+        collectedCoins.clear();
+        sumOfCoinValues = 0;
     }
 
     public final boolean getChangeFromStorage(final ArrayList<Coin> coinsForChange,
             final float amountOfChange)
                     throws NoProperCoinsException, CoinDispenserException, StorageException {
-        assertChangeNotNegativeOrZero(amountOfChange);
+        assertChangeNotNegative(amountOfChange);
 
         final HashMap<Coin, Integer> availableCoins = storage.getCoins();
 

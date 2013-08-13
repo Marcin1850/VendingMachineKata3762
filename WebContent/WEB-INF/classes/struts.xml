@@ -16,5 +16,9 @@
         <action name="cancelOrder" class="com.riddimsoft.VendingMachine" method="cancelOrder">
             <result>/machine.jsp</result>
         </action>
+
+        <action name="throwCoin" class="com.riddimsoft.VendingMachine" method="throwCoin">
+            <result>/machine.jsp</result>
+        </action>
     </package>
 </struts>
