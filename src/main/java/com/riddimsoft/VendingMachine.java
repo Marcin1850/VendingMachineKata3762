@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.riddimsoft.exceptions.CoinDispenserException;
 import com.riddimsoft.exceptions.NoProperCoinsException;
+import com.riddimsoft.exceptions.ProductDispenserException;
+import com.riddimsoft.exceptions.ShelfException;
 import com.riddimsoft.exceptions.StorageException;
 
 
@@ -14,6 +16,8 @@ public class VendingMachine {
     private PriceList priceList;
     private Display display;
     private CoinDispenser coinDispenser;
+    private ProductDispenser productDispenser;
+
     private int selectedShelf = 0;
     private float insertedCoinValue = 0f;
 
@@ -47,6 +51,10 @@ public class VendingMachine {
 
     public final void setCoinDispenser(final CoinDispenser coinDispenser) {
         this.coinDispenser = coinDispenser;
+    }
+
+    public final void setProductDispenser(final ProductDispenser productDispenser) {
+        this.productDispenser = productDispenser;
     }
 
     public final int getSelectedShelf() {
@@ -117,7 +125,8 @@ public class VendingMachine {
 
     private void bringOutProductAndChange(final Float coinsAmount,
             final ProductType selectedProductType, final Float selectedProductPrice)
-            throws NoProperCoinsException, CoinDispenserException, StorageException {
+            throws NoProperCoinsException, CoinDispenserException, StorageException,
+            ProductDispenserException, ShelfException {
         final ArrayList<Coin> coinsToReturn = new ArrayList<Coin>();
         final boolean canSpendChange = coinDispenser.getChangeFromStorage(coinsToReturn,
                 coinsAmount - selectedProductPrice);
@@ -126,6 +135,7 @@ public class VendingMachine {
             returnedProduct = selectedProductType.getName();
             returnedCoins = convertCoinsListToStringList(coinsToReturn);
 
+            productDispenser.getProductFromStorage(selectedShelf - 1);
             coinDispenser.resetAndAddCoinsToStorage();
         } else {
             returnedProduct = CANT_SPEND_CHANGE_MESSAGE;

@@ -59,6 +59,10 @@
         <constructor-arg ref="storage" />
     </bean>
 
+    <bean id="productDispenser" class="com.riddimsoft.ProductDispenser">
+        <constructor-arg ref="storage" />
+    </bean>
+
     <bean id="com.riddimsoft.VendingMachine" class="com.riddimsoft.VendingMachine">
         <property name="storage" ref="storage" />
         <property name="priceList" ref="priceList" />
