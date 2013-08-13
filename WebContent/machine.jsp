@@ -70,11 +70,11 @@
         <s:select label="Choose shelf"
                 list="storage.activeShelfNumbers"
                 name="selectedShelf" />
-        <s:submit value="Select shelf" />
+        <s:submit value="Select shelf" disabled="%{selectedShelf != 0}" />
     </s:form>
 
     <s:form action="cancelOrder" method="post">
-        <s:submit value="Cancel order" />
+        <s:submit value="Cancel order" disabled="%{selectedShelf == 0}" />
     </s:form>
 
     <table border="2" class="darkKhakiBg">
@@ -98,7 +98,7 @@
             <s:select label="Choose denomianator"
                     list="@com.riddimsoft.Coin@getPossibleValues()"
                     name="insertedCoinValue" />
-            <s:submit value="Throw coin" />
+            <s:submit value="Throw coin" disabled="%{selectedShelf == 0}" />
         </s:form>
     </p>
 
