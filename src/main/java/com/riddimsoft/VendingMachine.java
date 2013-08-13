@@ -10,6 +10,7 @@ public class VendingMachine {
     private CoinDispenser coinDispenser;
     private int selectedShelf = 0;
     private float insertedCoinValue = 0f;
+    private ArrayList<String> returnedCoins = new ArrayList<String>();
 
 
     public final Storage getStorage() {
@@ -56,9 +57,16 @@ public class VendingMachine {
         this.insertedCoinValue = insertedCoinValue;
     }
 
+    public final ArrayList<String> getReturnedCoins() {
+        return returnedCoins;
+    }
+
+    private void resetReturnedItems() {
+        returnedCoins.clear();
+    }
+
     public final String cancelOrder() throws Exception {
-        final ArrayList<Coin> coins = coinDispenser.resetAndReturnCoins();
-        // TODO - wyswietlic ze monety oddane
+        returnedCoins = coinDispenser.resetAndReturnCoins();
 
         display.resetValue();
 
@@ -68,6 +76,8 @@ public class VendingMachine {
     }
 
     public final String execute() throws Exception {
+        resetReturnedItems();
+
         if (insertedCoinValue != 0f) {
             display.setValue(coinDispenser.addCoinAndReturnSum(new Coin(insertedCoinValue)));
 

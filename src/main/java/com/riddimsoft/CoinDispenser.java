@@ -51,13 +51,16 @@ public class CoinDispenser {
         return sumOfCoinValues;
     }
 
-    public final ArrayList<Coin> resetAndReturnCoins() {
-        final ArrayList<Coin> retValue = new ArrayList<Coin>(collectedCoins);
+    public final ArrayList<String> resetAndReturnCoins() {
+        final ArrayList<String> retValues = new ArrayList<String>();
+        for (final Coin coin : collectedCoins) {
+            retValues.add(String.format("%.2f", coin.getValue()));
+        }
 
         collectedCoins.clear();
         sumOfCoinValues = 0;
 
-        return retValue;
+        return retValues;
     }
 
     public final boolean getChangeFromStorage(final ArrayList<Coin> coinsForChange,

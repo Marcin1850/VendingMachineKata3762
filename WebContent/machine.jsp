@@ -13,6 +13,7 @@
 .aquaBg {background-color:aqua;}
 .darkKhakiBg {background-color:darkKhaki;}
 .greenYellowBg {background-color:greenYellow;}
+.darkGrayBg {background-color:darkGray;}
 </style>
 </head>
 
@@ -100,6 +101,17 @@
             <s:submit value="Throw coin" />
         </s:form>
     </p>
+
+    <table border="2" class="darkGrayBg">
+        <tr>
+            <td>Coins returned</td>
+            <td>
+                <s:iterator value="returnedCoins" id="coinValue">
+                    <s:property value="coinValue"/><br/>
+                </s:iterator>
+            </td>
+        </tr>
+    </table>
 
     <%-- <p>
         <s:form action="machine" method="post">
