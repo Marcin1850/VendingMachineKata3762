@@ -6,7 +6,7 @@
 
     <bean id="storage" class="com.riddimsoft.Storage" />
     <bean id="productDispenser" class="com.riddimsoft.ProductDispenser">
-        <property name="storage" ref="storage" />
+        <constructor-arg ref="storage" />
     </bean>
     <bean id="productType" class="com.riddimsoft.ProductType">
         <constructor-arg value="Cola" />
