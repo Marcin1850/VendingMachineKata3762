@@ -52,7 +52,7 @@ public class CoinDispenser {
     }
 
     public final ArrayList<Coin> resetAndReturnCoins() {
-        final ArrayList<Coin> retCoins = collectedCoins;
+        final ArrayList<Coin> retCoins = new ArrayList<Coin>(collectedCoins);
 
         collectedCoins.clear();
         sumOfCoinValues = 0;
